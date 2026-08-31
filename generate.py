@@ -1,4 +1,4 @@
-"""
+ """
 Drafts a Telegram post in Russian based on config.yaml topics/tone.
 If the topic calls for a statistic or factual claim, the model uses live
 web search to verify it against a credible source (WHO/ВОЗ, Минздрав РФ,
@@ -70,7 +70,13 @@ def generate_post(cfg) -> str:
     text = text.strip('"')
 
     if len(text) > cfg["max_length"]:
-        text = text[: cfg["max_length"] - 1].rsplit(" ", 1)[0] + "…"
+        truncated = text[: cfg["max_length"]]
+        # Prefer cutting at the last complete sentence, not mid-word
+        last_period = max(truncated.rfind(". "), truncated.rfind(".\n"), truncated.rfind("!"), truncated.rfind("?"))
+        if last_period > cfg["max_length"] * 0.5:  # only use it if it's not too far back
+            text = truncated[: last_period + 1]
+        else:
+            text = truncated.rsplit(" ", 1)[0] + "…"
 
     return text
 
