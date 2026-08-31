@@ -2,8 +2,17 @@ name: Auto-post to Telegram
 
 on:
   schedule:
-    # 08:00 UTC = 11:00 MSK (Moscow is UTC+3 year-round, no DST)
+    # Moscow is UTC+3 year-round (no DST), so these times are stable.
+    # 07:00 UTC = 10:00 MSK
+    # 08:00 UTC = 11:00 MSK
+    # 08:45 UTC = 11:45 MSK
+    # 13:15 UTC = 16:15 MSK
+    # 14:15 UTC = 17:15 MSK
+    - cron: "0 7 * * *"
     - cron: "0 8 * * *"
+    - cron: "45 8 * * *"
+    - cron: "15 13 * * *"
+    - cron: "15 14 * * *"
   workflow_dispatch: {}
 
 permissions:
