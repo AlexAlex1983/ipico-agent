@@ -1,4 +1,3 @@
- """
 Drafts a Telegram post in Russian based on config.yaml topics/tone.
 If the topic calls for a statistic or factual claim, the model uses live
 web search to verify it against a credible source (WHO/ВОЗ, Минздрав РФ,
