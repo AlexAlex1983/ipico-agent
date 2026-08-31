@@ -30,4 +30,4 @@ max_length: 3000   # Telegram allows up to 4096 — generous headroom for a full
 
 # ── Безопасность ─────────────────────────────────────────────────
 # Если true — бот генерирует и логирует пост, но НЕ публикует его.
-dry_run: true
+dry_run: false
